@@ -2,6 +2,7 @@ import os
 import sys
 import json
 import time
+from weather import Weather
 
 import requests
 from flask import Flask, request
@@ -45,7 +46,11 @@ def webhook():
                     elif (message_text.lower() == "time"):
                         send_message(sender_id, "Time is: "+str(time.gmtime().tm_hour) +":"+ str(time.gmtime().tm_min) +":"+ str(time.gmtime().tm_sec)+" GMT")
                     elif (message_text.lower() == "avail"):
-                        send_message(sender_id, "Available commands: date, time")
+                        send_message(sender_id, "Available commands: date, time, weather")
+                    elif (message_text.lower() == "weather"):
+                        send_message(sender_id, "Specify your location please")
+                        l_name = message_text
+                        send_message(sender_id, weather.lookup_by_location(l_name).condition()['text'] +", "+ str(weather.lookup_by_location(l_name).condition()['temp']))
                     else:
                         send_message(sender_id, "I read: "+message_text+". Please type \"avail\" to check for available commands!")
 
