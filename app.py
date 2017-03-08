@@ -1,6 +1,7 @@
 import os
 import sys
 import json
+import time
 
 import requests
 from flask import Flask, request
@@ -39,7 +40,15 @@ def webhook():
                     recipient_id = messaging_event["recipient"]["id"]  # the recipient's ID, which should be your page's facebook ID
                     message_text = messaging_event["message"]["text"]  # the message's text
 
-                    send_message(sender_id, "I read: "+message_text)
+                    if (message_text.lower == "date"):
+                        send_message(sender_id, "Date is: "+str(time.gmtime().tm_mday) +"/"+ str(time.gmtime().tm_mon) +"/"+ str(time.gmtime().tm_year))
+                    elif (message_text.lower == "time"):
+                        send_message(sender_id, "Time is: "+str(time.gmtime().tm_hour) +":"+ str(time.gmtime().tm_min) +":"+ str(time.gmtime().tm_sec)+" GMT")
+                    elif (message_text.lower == "avail"):
+                        send_message(sender_id, "Available commands: date, time")
+                    else:
+                        send_message(sender_id, "I read: "+message_text". Please type \"avail\" to check for available commands!")
+
 
                 if messaging_event.get("delivery"):  # delivery confirmation
                     pass
