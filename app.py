@@ -3,7 +3,7 @@ import sys
 import json
 import time
 from weather import Weather
-
+weather = Weather()
 import requests
 from flask import Flask, request
 
@@ -48,7 +48,7 @@ def webhook():
                     elif (message_text.lower() == "avail"):
                         send_message(sender_id, "Available commands: date, time, weather")
                     elif (message_text.lower()[:7] == "weather"):                        
-                        l_name = message_text[9:]
+                        l_name = message_text[8:]
                         send_message(sender_id, weather.lookup_by_location(l_name).condition()['text'] +", "+ str(weather.lookup_by_location(l_name).condition()['temp']))
                     else:
                         send_message(sender_id, "I read: "+message_text+". Please type \"avail\" to check for available commands!")
