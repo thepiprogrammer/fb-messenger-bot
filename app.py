@@ -47,7 +47,7 @@ def webhook():
                     elif (message_text.lower == "avail"):
                         send_message(sender_id, "Available commands: date, time")
                     else:
-                        send_message(sender_id, "I read: "+message_text". Please type \"avail\" to check for available commands!")
+                        send_message(sender_id, "I read: "+message_text+". Please type \"avail\" to check for available commands!")
 
 
                 if messaging_event.get("delivery"):  # delivery confirmation
