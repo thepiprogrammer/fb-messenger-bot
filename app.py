@@ -2,8 +2,8 @@ import os
 import sys
 import json
 import time
-# from weather import Weather
-# weather = Weather()
+from weather import Weather
+weather = Weather()
 import requests
 from flask import Flask, request
 
