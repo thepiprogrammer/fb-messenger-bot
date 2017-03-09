@@ -48,8 +48,10 @@ def webhook():
                     elif (message_text.lower() == "avail"):
                         send_message(sender_id, "Available commands: date, time, weather")
                     elif (message_text.lower()[:7] == "weather" and len(message_text) > 8):
-                        l_name = message_text[8:]
-                        send_message(sender_id, "Weather at this location is " + weather.lookup_by_location(l_name).condition()['text'] + ", " + str(weather.lookup_by_location(l_name).condition()['temp']))
+                        try:
+                            l_name = message_text[8:]
+                            send_message(sender_id, "Weather at this location is " + weather.lookup_by_location(l_name).condition()['text'] + ", " + str(weather.lookup_by_location(l_name).condition()['temp']))
+                        except Exception as e: print str(e)
                     else:
                         send_message(sender_id, "I read: "+message_text+". Please type \"avail\" to check for available commands!")
 
