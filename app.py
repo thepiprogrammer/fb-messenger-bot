@@ -49,7 +49,7 @@ def webhook():
                         send_message(sender_id, "Available commands: date, time, weather")
                     elif (message_text.lower() == "hello" or message_text.lower() == "hi"):
                         send_message(sender_id, "Bonjour! Please type \'avail\' for available commands")
-                    elif (message_text.lower()[:7] == "weather" and len(message_text) > 8):
+                    elif (message_text.lower()[:7] == "weather"):
                         try:
                             l_name = message_text[8:]
                             temp = (int(weather.lookup_by_location(l_name).condition()['temp'])-32)*5/9
