@@ -47,6 +47,8 @@ def webhook():
                         send_message(sender_id, "Time is: "+str(time.gmtime().tm_hour) +":"+ str(time.gmtime().tm_min) +":"+ str(time.gmtime().tm_sec)+" GMT")
                     elif (message_text.lower() == "avail"):
                         send_message(sender_id, "Available commands: date, time, weather")
+                    elif (message_text.lower() == "hello" or message_text.lower() == "hi"):
+                        send_message(sender_id, "Bonjour! Please type \'avail\' for available commands")
                     elif (message_text.lower()[:7] == "weather" and len(message_text) > 8):
                         try:
                             l_name = message_text[8:]
