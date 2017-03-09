@@ -47,11 +47,11 @@ def webhook():
                         send_message(sender_id, "Time is: "+str(time.gmtime().tm_hour) +":"+ str(time.gmtime().tm_min) +":"+ str(time.gmtime().tm_sec)+" GMT")
                     elif (message_text.lower() == "avail"):
                         send_message(sender_id, "Available commands: date, time, weather")
-                    elif (message_text.lower()[:7] == "weather" and len(message_text) > 8):
-                        try:
-                            l_name = message_text[8:]
-                            send_message(sender_id, "Weather at this location is " + weather.lookup_by_location(l_name).condition()['text'] + ", " + str(weather.lookup_by_location(l_name).condition()['temp']))
-                        except Exception as e: print str(e)
+                    # elif (message_text.lower()[:7] == "weather" and len(message_text) > 8):
+                    #     try:
+                    #         l_name = message_text[8:]
+                    #         send_message(sender_id, "Weather at this location is " + weather.lookup_by_location(l_name).condition()['text'] + ", " + str(weather.lookup_by_location(l_name).condition()['temp']))
+                    #     except Exception as e: send_message str(e)
                     else:
                         send_message(sender_id, "I read: "+message_text+". Please type \"avail\" to check for available commands!")
 
